@@ -433,72 +433,10 @@
 
 
   </div> <!-- end journey -->
- <!-- YEH RAKHO JAHAN BHI CHAHAO, BUT BODY KE ANDAR -->
-<button id="playButton" style="
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ff3388;
-    color: white;
-    border: none;
-    padding: 15px 40px;
-    border-radius: 60px;
-    font-size: 22px;
-    font-weight: bold;
-    z-index: 999999;
-    cursor: pointer;
-    box-shadow: 0 0 30px hotpink;
-    border: 3px solid white;
-    animation: bounce 1s infinite;
-">
-    🎵 CLICK TO PLAY MUSIC 🎵
-</button>
-
-<audio id="mySong" loop preload="auto">
-    <source src="song.mp3" type="audio/mpeg">
-    <!-- FALLBACK: agar song.mp3 nahi hai to ye try karo -->
-    <source src="music.mp3" type="audio/mpeg">
-    <source src="audio.mp3" type="audio/mpeg">
-    <source src="happy.mp3" type="audio/mpeg">
-    <source src="birthday.mp3" type="audio/mpeg">
-    <source src="song.m4a" type="audio/mp4">
-</audio>
-
-<script>
-    // Ye pakka kaam karega
-    var button = document.getElementById('playButton');
-    var song = document.getElementById('mySong');
-    
-    button.onclick = function() {
-        song.play().then(function() {
-            button.innerHTML = "🎵 PLAYING... 🎵";
-            button.style.background = "#44aa88";
-            button.style.animation = "none";
-            
-            // 2 sec baad button fade out
-            setTimeout(function() {
-                button.style.transition = "opacity 1s";
-                button.style.opacity = "0";
-            }, 2000);
-        }).catch(function(error) {
-            alert("Error: " + error.message + "\nCheck if song file exists!");
-            button.innerHTML = "❌ ERROR - TRY AGAIN";
-        });
-    };
-    
-    // Bounce animation
-    var style = document.createElement('style');
-    style.innerHTML = `
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.1); }
-        }
-    `;
-    document.head.appendChild(style);
-</script>
+ 
 </body>
 </html>
+
 
 
 
