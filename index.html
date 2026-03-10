@@ -433,74 +433,73 @@
 
 
   </div> <!-- end journey -->
-  <!-- Auto music player - body ke end se pehle lagao -->
-<audio id="birthdaySong" loop style="display: none;">
+ <!-- Audio element - body ke end mein lagana -->
+<audio id="birthdaySong" loop preload="auto" style="display: none;">
     <source src="song.mp3" type="audio/mpeg">
-    <!-- Agar MP3 kaam na kare to fallback -->
     <source src="song.m4a" type="audio/mp4">
     <source src="song.ogg" type="audio/ogg">
-    Your browser does not support the audio element.
 </audio>
 
 <script>
-    // Auto-play music when page loads
-    document.addEventListener('DOMContentLoaded', function() {
+    // Jab bhi user kahi bhi click kare, song chalu ho jaye
+    document.addEventListener('click', function playMusicOnClick() {
         var audio = document.getElementById('birthdaySong');
         
-        // Try to play automatically
-        var playPromise = audio.play();
-        
-        if (playPromise !== undefined) {
-            playPromise.then(function() {
-                console.log("🎵 Music playing automatically");
-            }).catch(function(error) {
-                console.log("Auto-play failed: ", error);
-                // Show a subtle play button if auto-play fails
-                showMusicButton();
-            });
-        }
+        audio.play().then(function() {
+            console.log("🎵 Song started! Happy birthday!");
+            // Ek baar play ho gaya to event hatado, baar baar play na ho
+            document.removeEventListener('click', playMusicOnClick);
+        }).catch(function(error) {
+            console.log("Play failed: ", error);
+        });
     });
     
-    // Fallback: show a small play button if auto-play fails
-    function showMusicButton() {
-        var btn = document.createElement('div');
-        btn.innerHTML = '🎵 Click to play music';
-        btn.style.cssText = `
+    // Optional: ek chota sa hint dikhao ki click karo to play hoga
+    window.addEventListener('load', function() {
+        var hint = document.createElement('div');
+        hint.innerHTML = '✨ click anywhere to start music ✨';
+        hint.style.cssText = `
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #ff99aa;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 16px;
-            z-index: 9999;
-            box-shadow: 0 4px 15px rgba(255,105,180,0.5);
-            border: 2px solid white;
-            animation: pulse 2s infinite;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: #d43f6b;
+            padding: 12px 25px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            z-index: 10000;
+            border: 3px solid #ff99aa;
+            box-shadow: 0 5px 20px rgba(255,105,180,0.5);
+            animation: hintFloat 2s infinite alternate;
+            pointer-events: none;
+            backdrop-filter: blur(5px);
         `;
+        document.body.appendChild(hint);
         
-        btn.onclick = function() {
-            document.getElementById('birthdaySong').play();
-            btn.style.display = 'none';
-        };
-        
-        document.body.appendChild(btn);
-    }
+        // 3 second baad hint fade out
+        setTimeout(function() {
+            hint.style.transition = 'opacity 1s';
+            hint.style.opacity = '0';
+            setTimeout(function() {
+                if (hint.parentNode) hint.remove();
+            }, 1000);
+        }, 4000);
+    });
     
-    // Add pulse animation for button
+    // Animation for hint
     var style = document.createElement('style');
     style.innerHTML = `
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        @keyframes hintFloat {
+            from { bottom: 30px; opacity: 1; }
+            to { bottom: 45px; opacity: 0.9; }
         }
     `;
     document.head.appendChild(style);
 </script>
 </body>
 </html>
+
 
 
