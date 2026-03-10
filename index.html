@@ -319,6 +319,18 @@
   </style>
 </head>
 <body>
+<audio id="bgmusic" autoplay loop muted>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+window.onload = function(){
+  var audio = document.getElementById("bgmusic");
+  audio.muted = false;
+  audio.play();
+}
+</script>
+  
   <!-- floating purple hearts / BTS symbols (only aesthetic) -->
   <div class="floating-love">
     <div class="float-icon" style="left: 8%; animation-duration: 13s;">💜</div>
@@ -429,19 +441,9 @@
       <img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_1_2026-03-10_22-56-05.jpg" style="width: 170px; height: 180px; object-fit: cover; border-radius: 30px; transform: rotate(4deg); border: 5px solid white; outline: 4px solid #ffb0c3;" alt="">
       <img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_6_2026-03-10_22-56-05.jpg" style="width: 170px; height: 180px; object-fit: cover; border-radius: 30px; transform: rotate(-7deg); border: 5px solid white; outline: 4px solid #ffb0c3;" alt="">
     </div>
-    
-    <audio id="bgmusic" autoplay loop muted>
-  <source src="song.mp3" type="audio/mpeg">
-</audio>
 
-<script>
-window.onload = function(){
-  var audio = document.getElementById("bgmusic");
-  audio.muted = false;
-  audio.play();
-}
-</script>
 
   </div> <!-- end journey -->
 </body>
 </html>
+
