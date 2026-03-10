@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>happy birthday VIVU · forever yours</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ffc0cb 0%, #ffb3c6 40%, #ffd9e8 100%);
+      font-family: 'Trebuchet MS', 'Lucida Sans', 'Segoe UI', 'Chalkboard SE', cursive, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding: 2rem 1.5rem;
+      position: relative;
+    }
+
+    /* soft floating hearts / BTS mood */
+    .floating-love {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .float-icon {
+      position: absolute;
+      font-size: 2.5rem;
+      opacity: 0.25;
+      color: #ffa5b9;
+      animation: rise 18s infinite ease-in-out;
+      filter: drop-shadow(0 0 5px #ffb7c5);
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(110vh) rotate(0deg) scale(0.5); opacity: 0.2; }
+      50% { opacity: 0.7; transform: translateY(40vh) rotate(15deg) scale(1.1); }
+      100% { transform: translateY(-20vh) rotate(25deg) scale(0.6); opacity: 0; }
+    }
+
+    /* main scroll container */
+    .birthday-journey {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
+    }
+
+    /* hero - big happy birthday VIVU */
+    .hero-vivu {
+      text-align: center;
+      background: rgba(255, 230, 240, 0.7);
+      backdrop-filter: blur(4px);
+      padding: 2.5rem 1rem;
+      border-radius: 120px 20px 120px 20px;
+      border: 4px solid white;
+      box-shadow: 0 30px 40px #faa7bb;
+    }
+
+    .hero-vivu h1 {
+      font-size: 5rem;
+      font-weight: 1000;
+      color: #b23b5e;
+      text-shadow: 3px 3px 0 #ffd0dc, 0 0 20px #ffb1c2;
+      letter-spacing: 4px;
+      animation: shimmer 2.5s infinite alternate;
+    }
+
+    @keyframes shimmer {
+      from { text-shadow: 2px 2px 0 #ffeef2, 0 0 15px #faa7b7; }
+      to { text-shadow: 8px 8px 15px #ff90aa, 0 0 35px #ffb0c0; }
+    }
+
+    .hero-vivu p {
+      font-size: 2.2rem;
+      color: #942b4b;
+      background: #ffffffcc;
+      display: inline-block;
+      padding: 0.7rem 2.5rem;
+      border-radius: 50px;
+      margin: 1.5rem 0 0.5rem;
+      border: 2px solid white;
+      box-shadow: 0 5px 0 #f598b2;
+    }
+
+    /* main photo wall - scattered with rotation */
+    .memory-wall {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem 1.2rem;
+      margin: 3rem 0 2rem;
+    }
+
+    .memory-piece {
+      width: 190px;
+      height: 240px;
+      transform: rotate(var(--rot, 0deg)) translateY(var(--y, 0));
+      animation: sway 9s infinite alternate ease-in-out;
+      filter: drop-shadow(10px 15px 15px #e97190);
+    }
+
+    .memory-piece:nth-child(odd) { --rot: -9deg; --y: -8px; }
+    .memory-piece:nth-child(3n) { --rot: 14deg; --y: 12px; }
+    .memory-piece:nth-child(5n+2) { --rot: -16deg; --y: -10px; }
+    .memory-piece:nth-child(7n+4) { --rot: 11deg; --y: 6px; }
+
+    @keyframes sway {
+      0% { transform: rotate(var(--rot)) translateY(0px); }
+      100% { transform: rotate(calc(var(--rot) + 4deg)) translateY(15px); }
+    }
+
+    .memory-piece img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 30px 10px 30px 10px;
+      border: 7px solid white;
+      outline: 5px solid #ff9eb5;
+      outline-offset: 3px;
+      box-shadow: 0 25px 30px #de6f8b;
+    }
+
+    /* message + image pair — every block has sweet english lines */
+    .love-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      background: rgba(255, 250, 245, 0.5);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem 2.8rem;
+      border-radius: 70px 20px 70px 20px;
+      border: 3px solid #ffe2ec;
+      box-shadow: 0 30px 35px #ee8dab;
+      transition: 0.3s;
+    }
+
+    .love-note:hover {
+      backdrop-filter: blur(15px);
+      background: rgba(255, 240, 250, 0.7);
+    }
+
+    .note-text {
+      max-width: 400px;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #902f50;
+      line-height: 1.45;
+      text-align: center;
+      background: #ffecf0e0;
+      padding: 2rem 1.5rem;
+      border-radius: 80px 15px 80px 15px;
+      border: 3px dashed #ffb7c5;
+      box-shadow: inset 0 -5px 0 #f28ea8, 0 8px 0 #cf6582;
+    }
+
+    .love-note img {
+      width: 250px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 45% 10% 45% 10%;
+      border: 10px double white;
+      outline: 5px solid #ffa7bc;
+      transform: rotate(3deg) scale(1);
+      transition: 0.4s;
+      box-shadow: 0 25px 35px #b14567;
+    }
+
+    .love-note.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .love-note.reverse img {
+      transform: rotate(-5deg) scale(1.02);
+    }
+
+    .love-note:nth-child(odd) .note-text {
+      background: #ffe1ed;
+      border-radius: 30px 70px 30px 70px;
+    }
+
+    /* animation for smooth appear / slide */
+    .slide-soft-left {
+      animation: slideLeft 12s infinite alternate;
+    }
+    @keyframes slideLeft {
+      0% { opacity: 0.6; transform: translateX(-40px) scale(0.95); }
+      100% { opacity: 1; transform: translateX(15px) scale(1.05); }
+    }
+
+    .slide-soft-right {
+      animation: slideRight 14s infinite alternate;
+    }
+    @keyframes slideRight {
+      0% { opacity: 0.5; transform: translateX(40px) rotate(-1deg); }
+      100% { opacity: 1; transform: translateX(-15px) rotate(2deg); }
+    }
+
+    /* favorites items - but now simply as "things you love" with no heading like favorites */
+    .precious-things {
+      background: #ffdde9f2;
+      border-radius: 70px 70px 30px 30px;
+      padding: 3.5rem 2rem;
+      border: 5px solid white;
+      margin: 2rem 0;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 30px 40px #e484a2;
+    }
+
+    .precious-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.2rem;
+      justify-content: center;
+    }
+
+    .precious-item {
+      width: 220px;
+      height: 220px;
+      transform: rotate(var(--prerot, 0deg));
+      animation: bob 7s infinite alternate;
+    }
+
+    .precious-item:nth-child(1) { --prerot: -8deg; }
+    .precious-item:nth-child(2) { --prerot: 12deg; }
+    .precious-item:nth-child(3) { --prerot: -14deg; }
+    .precious-item:nth-child(4) { --prerot: 10deg; }
+
+    @keyframes bob {
+      0% { transform: rotate(var(--prerot)) translateY(0); }
+      100% { transform: rotate(calc(var(--prerot) + 3deg)) translateY(-18px); }
+    }
+
+    .precious-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 35% 35% 15% 15%;
+      border: 9px solid white;
+      outline: 5px solid #ff90ae;
+      box-shadow: 0 25px 30px #cf6684;
+    }
+
+    /* additional sweet lines interleaved with pics */
+    .soft-quote {
+      text-align: center;
+      font-size: 2.4rem;
+      font-weight: 500;
+      color: #9f3157;
+      background: #fff0f7d9;
+      padding: 2.2rem 1.8rem;
+      border-radius: 150px 20px 150px 20px;
+      margin: 2rem 0;
+      border: 4px solid white;
+      font-style: normal;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 15px 25px #f296b2;
+      letter-spacing: 1px;
+    }
+
+    /* footer */
+    .footer-love {
+      text-align: center;
+      padding: 3.5rem 0.5rem;
+      font-size: 3rem;
+      color: #ba2b5a;
+      background: #ffeef4f0;
+      border-radius: 200px 30px 200px 30px;
+      border: 8px solid white;
+      text-shadow: 2px 2px 0 #ffffff;
+      margin-top: 3rem;
+    }
+
+    /* extra small image + text combo */
+    .mini-combo {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem 3rem;
+      background: #ffe5ee;
+      border-radius: 60px 10px 60px 10px;
+      padding: 2rem 2rem;
+      border: 3px dotted white;
+    }
+
+    .mini-combo p {
+      font-size: 2rem;
+      color: #8a2f4a;
+      max-width: 280px;
+      background: white;
+      padding: 1.8rem;
+      border-radius: 40px 10px 40px 10px;
+      box-shadow: 0 10px 0 #ffb2c3;
+    }
+
+    .mini-combo img {
+      width: 210px;
+      height: 210px;
+      object-fit: cover;
+      border-radius: 30% 5% 30% 5%;
+      border: 6px solid white;
+      outline: 4px solid #f68eac;
+      transform: rotate(-4deg);
+    }
+  </style>
+</head>
+<body>
+  <!-- floating purple hearts / BTS symbols (only aesthetic) -->
+  <div class="floating-love">
+    <div class="float-icon" style="left: 8%; animation-duration: 13s;">💜</div>
+    <div class="float-icon" style="left: 22%; animation-duration: 16s;">✨</div>
+    <div class="float-icon" style="left: 35%; animation-duration: 19s;">💗</div>
+    <div class="float-icon" style="left: 48%; animation-duration: 14s;">🌸</div>
+    <div class="float-icon" style="left: 62%; animation-duration: 17s;">💕</div>
+    <div class="float-icon" style="left: 78%; animation-duration: 15s;">🫶</div>
+    <div class="float-icon" style="left: 88%; animation-duration: 20s;">💖</div>
+    <div class="float-icon" style="left: 15%; animation-duration: 22s;">🥺</div>
+  </div>
+
+  <div class="birthday-journey">
+
+    <!-- HERO: happy birthday VIVU (no extra text) -->
+    <div class="hero-vivu">
+      <h1>🎉 HAPPY BIRTHDAY VIVU 🎉</h1>
+      <p>the most beautiful soul i know</p>
+    </div>
+
+    <!-- 14 photos scattered – just her images (all 14) -->
+    <div class="memory-wall">
+      <div class="memory-piece"><img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_13_2026-03-10_22-56-05.jpg" alt="VIVU 13"></div>
+      <div class="memory-piece"><img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_14_2026-03-10_22-56-05.jpg" alt="VIVU 14"></div>
+      <div class="memory-piece"><img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_12_2026-03-10_22-56-05.jpg" alt="VIVU 12"></div>
+      <div class="memory-piece"><img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_11_2026-03-10_22-56-05.jpg" alt="VIVU 11"></div>
+      <div class="memory-piece"><img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_10_2026-03-10_22-56-05.jpg" alt="VIVU 10"></div>
+      <div class="memory-piece"><img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_9_2026-03-10_22-56-05.jpg" alt="VIVU 9"></div>
+      <div class="memory-piece"><img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_7_2026-03-10_22-56-05.jpg" alt="VIVU 7"></div>
+      <div class="memory-piece"><img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_8_2026-03-10_22-56-05.jpg" alt="VIVU 8"></div>
+      <div class="memory-piece"><img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_6_2026-03-10_22-56-05.jpg" alt="VIVU 6"></div>
+      <div class="memory-piece"><img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_5_2026-03-10_22-56-05.jpg" alt="VIVU 5"></div>
+      <div class="memory-piece"><img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_4_2026-03-10_22-56-05.jpg" alt="VIVU 4"></div>
+      <div class="memory-piece"><img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_3_2026-03-10_22-56-05.jpg" alt="VIVU 3"></div>
+      <div class="memory-piece"><img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_2_2026-03-10_22-56-05.jpg" alt="VIVU 2"></div>
+      <div class="memory-piece"><img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_1_2026-03-10_22-56-05.jpg" alt="VIVU 1"></div>
+    </div>
+
+    <!-- message block 1 : sweet english lines + her pic -->
+    <div class="love-note slide-soft-left">
+      <div class="note-text">the first time i saw you<br>i knew you were magic<br>happy birthday VIVU</div>
+      <img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_7_2026-03-10_22-56-05.jpg" alt="VIVU magic">
+    </div>
+
+    <!-- message block 2 : reverse + different line -->
+    <div class="love-note reverse slide-soft-right">
+      <div class="note-text">every day with you<br>feels like a dream<br>stay forever, VIVU</div>
+      <img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_10_2026-03-10_22-56-05.jpg" alt="VIVU dream">
+    </div>
+
+    <!-- special things (her fav items, but no heading like favorites, simply images with text) -->
+    <div class="precious-things">
+      <!-- adding a soft english line instead of any 'favourites' label -->
+      <div style="text-align: center; font-size: 2rem; margin-bottom: 2.5rem; color: #992f53; background: #ffeaf1; padding: 1rem 2rem; border-radius: 60px; display: inline-block; margin-left: auto; margin-right: auto; width: fit-content; border: 3px solid white;">a little corner of things you adore</div>
+      <div class="precious-grid">
+        <div class="precious-item"><img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/deleteeeeeeeeee.jpg" alt="special 1"></div>
+        <div class="precious-item"><img src="https://png.pngtree.com/png-vector/20240208/ourmid/pngtree-nepal-food-momo-dumpling-png-image_11719797.png" alt="momo"></div>
+        <div class="precious-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFPV5l19xmcarDJSV1hU0A5ZvDXm5nCIGX5A&s" alt="treat"></div>
+        <div class="precious-item"><img src="https://i.pinimg.com/736x/f8/86/30/f88630fc816b42d7b3ec4bca85cf9806.jpg" alt="bts"></div>
+      </div>
+    </div>
+
+    <!-- message block 3 -->
+    <div class="love-note">
+      <div class="note-text">you make my world<br>so much brighter<br>happy birthday, beautiful</div>
+      <img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_13_2026-03-10_22-56-05.jpg" alt="VIVU bright">
+    </div>
+
+    <!-- message block 4 reverse -->
+    <div class="love-note reverse">
+      <div class="note-text">thank you for existing<br>thank you for being you<br>love you endlessly</div>
+      <img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_5_2026-03-10_22-56-05.jpg" alt="VIVU endless">
+    </div>
+
+    <!-- one more soft quote with slide/fade effect -->
+    <div class="soft-quote slide-soft-left">
+      “you are the purple in my gray, the spring in my winter”
+    </div>
+
+    <!-- mini combo: image + text + another image (all mixed) -->
+    <div class="mini-combo">
+      <img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_2_2026-03-10_22-56-05.jpg" alt="VIVU">
+      <p>my favorite person<br>deserves the world<br>happy birthday dear VIVU</p>
+      <img src="https://i.pinimg.com/736x/f8/86/30/f88630fc816b42d7b3ec4bca85cf9806.jpg" alt="bts mood">
+    </div>
+
+    <!-- final love note block -->
+    <div class="love-note slide-soft-right">
+      <div class="note-text">here’s to more laughter<br>more hugs & more BTS<br>happy birthday lovely</div>
+      <img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_14_2026-03-10_22-56-05.jpg" alt="VIVU bts">
+    </div>
+
+    <!-- extra small sweet line with random pic teda meda -->
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: center; background: #ffdee9; padding: 2rem; border-radius: 80px 10px;">
+      <img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_3_2026-03-10_22-56-05.jpg" style="width: 200px; height: 220px; object-fit: cover; border-radius: 40% 10% 40% 10%; border: 8px solid white; transform: rotate(11deg); outline: 4px solid #fba5bc;" alt="">
+      <p style="font-size: 2rem; color:#a7375d; background: white; padding: 1.5rem; border-radius: 50px; max-width: 300px;">always and forever<br>your biggest fan</p>
+      <img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_11_2026-03-10_22-56-05.jpg" style="width: 200px; height: 220px; object-fit: cover; border-radius: 30% 30% 5% 5%; border: 8px solid white; transform: rotate(-8deg); outline: 4px solid #ffa7bc;" alt="">
+    </div>
+
+    <!-- footer with pure english -->
+    <div class="footer-love">
+      💜 with all my love, VIVU 💜<br>
+      <span style="font-size: 2rem;">happy birthday, forever</span>
+    </div>
+
+    <!-- one last scattered pic for luck -->
+    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+      <img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_1_2026-03-10_22-56-05.jpg" style="width: 170px; height: 180px; object-fit: cover; border-radius: 30px; transform: rotate(4deg); border: 5px solid white; outline: 4px solid #ffb0c3;" alt="">
+      <img src="https://uploads.onecompiler.io/43peec75j/44fxmkka8/photo_6_2026-03-10_22-56-05.jpg" style="width: 170px; height: 180px; object-fit: cover; border-radius: 30px; transform: rotate(-7deg); border: 5px solid white; outline: 4px solid #ffb0c3;" alt="">
+    </div>
+    
+    <audio id="bgmusic" autoplay loop muted>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+window.onload = function(){
+  var audio = document.getElementById("bgmusic");
+  audio.muted = false;
+  audio.play();
+}
+</script>
+
+  </div> <!-- end journey -->
+</body>
+</html>
