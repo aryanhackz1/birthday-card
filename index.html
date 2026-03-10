@@ -436,6 +436,51 @@
  
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<audio id="a" loop preload="auto">
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const audio = document.getElementById("a");
+
+  // pehli click pe play (sabse reliable tareeka browsers mein 2025-26)
+  let played = false;
+
+  document.addEventListener("click", () => {
+    if (!played) {
+      audio.play().catch(() => {
+        // agar phir bhi na chale to retry (kuch browsers strict hote hain)
+        setTimeout(() => audio.play(), 50);
+      });
+      played = true;
+    }
+  }, { once: true });   // sirf ek baar listener chalega
+
+  // optional: agar chahte ho ki page khulte hi muted shuru ho (kuch cases mein help karta hai)
+  // audio.muted = true;
+  // audio.play().catch(()=>{});
+</script>
+
+</body>
+</html>
 
 
 
